@@ -1,12 +1,17 @@
-import app from "express";
+import express from "express";
 import consign from "consign";
 import bodyParser from "body-parser";
 
-//Configuração do encoder
-app().use(bodyParser.urlencoded({ extended: false }));
-app().use(bodyParser.json());
+export default () => {
+  const app = express();
 
-//Listagem dos módulos
-consign().include("controller").into(app);
+  //Configuração da API
+  // Ao usar o Potman, use o x-www-form-urlencoded
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.json());
 
-export default app;
+  //Mapeando a Controller
+  consign().include("src/controller").into(app);
+
+  return app;
+};

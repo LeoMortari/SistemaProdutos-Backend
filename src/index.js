@@ -14,6 +14,6 @@ connection.connect((err) => {
 
   //Event de abertura
   return app.listen(port, () => {
-    console.log("Servidor iniciado");
+    console.log("API Iniciada");
   });
 });
