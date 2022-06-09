@@ -1,5 +1,6 @@
 import customExpress from "./config/customExpress";
 import connection from "./database/connection";
+import Pedidos from "./tables/pedidos";
 
 const app = customExpress();
 
@@ -9,8 +10,11 @@ const port = 3000;
 //Conexão com o banco de dados
 connection.connect((err) => {
   if (err) {
-    return console.error("Erro no banco de dados, ERRO: " + err);
+    return console.log("Erro no banco de dados, ERRO: " + err);
   }
+
+  //Iniciação da classe
+  Pedidos.init();
 
   //Event de abertura
   return app.listen(port, () => {
