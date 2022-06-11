@@ -21,7 +21,9 @@ class Pedidos {
       "quantidade INT NOT NULL," +
       "observacao VARCHAR(255) NOT NULL," +
       "valor DOUBLE NOT NULL," +
-      "PRIMARY KEY(id_pk))";
+      "id_cardapio_fk INT," +
+      "PRIMARY KEY(id_pk)," +
+      "CONSTRAINT fk_id FOREIGN KEY (id_cardapio_fk) REFERENCES cardapio(id))";
     connection.query(sql);
   }
 

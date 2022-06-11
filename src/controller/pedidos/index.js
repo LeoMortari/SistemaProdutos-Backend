@@ -14,6 +14,7 @@ module.exports = (app) => {
       if (!quantidade || !observacao || !valor) {
         throw new Error("Todos os campos devem ser preenchidos");
       }
+
       //Atribuição dos valores convertidos
       observacao = StringFunctions.convertToString(observacao);
       valor = DoubleFunction.convertToDouble(valor);
