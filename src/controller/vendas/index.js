@@ -17,11 +17,11 @@ module.exports = (app) =>{
       }
       let obj = {id_usuario_fk, id_pedido_fk};
       console.log(req.body);
-      vendas.CadastraVenda(res,obj);
+      vendas.CadastrarVenda(res,obj);
     })
 
     app.get(`${rota}`, (req, res) => {
-      vendas.CadastrarVenda(res);
+      vendas.ConsultaGeralVendas(res);
     })
 
     app.get(`${rota}/:id`, (req, res) => {
