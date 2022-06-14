@@ -5,7 +5,23 @@ import connection from "../../database/connection";
 const ERROR_DATABASE = { error: "Falha na comunicação com o Banco de Dados" };
 
 //Funções externas
-const error = (res) => res.status(400).send(ERROR_DATABASE);
+const error = (res) => res.status(400).send({ error: ERROR_DATABASE });
+
+//Função que gera a String SQL
+const stringData = (arr) => {
+  let txt = "";
+
+  //Iteração sobre o array para a construção do values
+  arr.map((item, index) => {
+    if (index != arr.length - 1) {
+      txt += `${item}, `;
+    } else {
+      txt += item;
+    }
+  });
+
+  return txt;
+};
 
 class Pedidos {
   //Inicialização da Classe
@@ -19,8 +35,10 @@ class Pedidos {
       "CREATE TABLE IF NOT EXISTS pedido" +
       "(id_pk INT NOT NULL AUTO_INCREMENT," +
       "quantidade INT NOT NULL," +
-      "observacao VARCHAR(255) NOT NULL," +
+      "observacao VARCHAR(255) DEFAULT NULL," +
       "valor DOUBLE NOT NULL," +
+      "frete DOUBLE NOT NULL," +
+      "tempoEntrega INT NOT NULL," +
       "id_cardapio_fk INT," +
       "PRIMARY KEY(id_pk)," +
       "CONSTRAINT fk_id FOREIGN KEY (id_cardapio_fk) REFERENCES cardapio(id))";
@@ -32,8 +50,8 @@ class Pedidos {
   //Adiciona um novo pedido
   adicionaNovoPedido(res, pedido) {
     let values = Object.values(pedido);
-    let sql = `INSERT INTO pedido (quantidade, observacao, valor) VALUES (${values.join(
-      ","
+    let sql = `INSERT INTO pedido (quantidade, observacao, valor, frete, tempoEntrega) VALUES (${stringData(
+      values
     )})`;
 
     connection.query(sql, (err) => {
@@ -72,7 +90,7 @@ class Pedidos {
   }
 
   //Select de algum atributo
-  SelectPedidoPorAtributo(res, field, objValue) {
+  selectPedidoPorAtributo(res, field, objValue) {
     //Caso o valor for uma string, atribui aspas ao SQL
     let value = objValue.isString ? `'${objValue.value}'` : objValue.value;
 
