@@ -7,6 +7,7 @@ import * as DoubleFunction from "../../utils/double";
 import Pedidos from "../../tables/pedidos/index";
 
 module.exports = (app) => {
+  /* Adiciona um pedido */
   app.post("/pedidos/adicionar", (req, res) => {
     //Retira os valores da request
     let {
@@ -49,7 +50,15 @@ module.exports = (app) => {
     Pedidos.adicionaNovoPedido(res, obj);
   });
 
-  app.get("/pedidos/listar", (req, res) => {
+  /* Lista todos os pedidos */
+  app.get("/pedidos/listar", (_req, res) => {
     Pedidos.selectPedidoGeral(res);
+  });
+
+  /* Lista todos os pedidos de um usuário */
+  app.get("/pedidos/listar/:email", (req, res) => {
+    const { email } = req.params;
+
+    Pedidos.selectPedidoPorEmail(res, email);
   });
 };
