@@ -33,7 +33,7 @@ class Vendas{
         let sql = `INSERT INTO venda(id_usuario_fk,id_pedido_fk) VALUES (${values.join(
             ','
         )})`
-        connection.query(sql,(err) =>{
+        connection.query(sql,(err, result) =>{
             if(err){
                 error(res);
             }else{
@@ -51,9 +51,8 @@ class Vendas{
         connection.query(sql,(err,result) =>{
             if(err){
                 error(res);
-            }else{
-            res.status(200).send();
             }
+            res.status(200).send(result);
         })
     }
 
@@ -68,7 +67,7 @@ class Vendas{
             if(err){
                 error(res);
             }
-            res.status(200).send();
+            res.status(200).send(result);
         })
     }
 
@@ -76,22 +75,22 @@ class Vendas{
         let sql = 'SELECT SUM(p.valor) as "valorTotal" FROM venda v '+  
         'JOIN pedido p '+
         'ON v.id_pedido_fk = p.id_pk';
-        connection.query(sql,(err) =>{
+        connection.query(sql,(err, result) =>{
             if(err){
                 error(res);
             }
-            res.status(200).send();
+            res.status(200).send(result);
         })
     }
 
     EditarVenda(id, venda, res){
         let sql = 'UPDATE venda SET ?' + 
         `WHERE id_venda_pk = ${id}`;
-        connection.query(sql, venda, (err) => {
+        connection.query(sql, venda, (err, result) => {
             if(err){
                 error(res);
             }
-            res.status(200).send();
+            res.status(200).send(result);
           });
     }
 }
