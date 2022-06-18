@@ -63,7 +63,7 @@ class Vendas{
         'ON v.id_pedido_fk = p.id_pk '+
         'AND u.id_usuario_pk = v.id_usuario_fk '+
         `WHERE id_venda_pk = ${id}`;
-        connection.query(sql,(err) =>{
+        connection.query(sql,(err, result) =>{
             if(err){
                 error(res);
             }
