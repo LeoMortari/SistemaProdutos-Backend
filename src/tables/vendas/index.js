@@ -57,7 +57,7 @@ class Vendas{
     }
 
     BuscaVendaPorId(res,id){
-        let sql = 'SELECT v.id_venda_pk, u.nome as "vendedor", p.* ' +
+        let sql = 'SELECT v.*, u.nome as "vendedor", p.* ' +
         'FROM venda v ' +
         'INNER JOIN (pedido p, usuario u) '+
         'ON v.id_pedido_fk = p.id_pk '+
