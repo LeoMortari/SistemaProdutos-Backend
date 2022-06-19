@@ -11,7 +11,7 @@ module.exports = (app) => {
   app.post("/pedidos/adicionar", (req, res) => {
     //Retira os valores da request
     let {
-      body: { quantidade, observacao, valor, tempoEntrega, frete },
+      body: { produtos, quantidade, observacao, valor, tempoEntrega, frete },
     } = req;
 
     const email_fk = StringFunctions.convertToString("leo@teste");
@@ -20,6 +20,8 @@ module.exports = (app) => {
     let data = StringFunctions.convertToString(
       moment().format("yyyy-MM-DD HH:mm:ss")
     );
+
+    produtos = StringFunctions.convertToString(produtos);
 
     try {
       //Valida os dados
@@ -38,6 +40,7 @@ module.exports = (app) => {
 
     //Cria um objeto com o par de atributo e valor;
     let obj = {
+      produtos,
       quantidade,
       observacao,
       valor,

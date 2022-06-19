@@ -44,6 +44,7 @@ class Pedidos {
     let sql =
       "CREATE TABLE IF NOT EXISTS pedido" +
       "(id_pk INT NOT NULL AUTO_INCREMENT," +
+      "produtos VARCHAR(255)," +
       "quantidade INT NOT NULL," +
       "observacao VARCHAR(255) DEFAULT NULL," +
       "valor DOUBLE NOT NULL," +
@@ -55,6 +56,7 @@ class Pedidos {
       "PRIMARY KEY(id_pk)," +
       "FOREIGN KEY (email_fk) REFERENCES usuario(email)," +
       "CONSTRAINT email_fk FOREIGN KEY (email_fk) REFERENCES usuario(email))";
+
     connection.query(sql);
   }
 
@@ -63,16 +65,22 @@ class Pedidos {
   //Adiciona um novo pedido
   adicionaNovoPedido(res, pedido) {
     let values = Object.values(pedido);
-    let sql = `INSERT INTO pedido (quantidade, observacao, valor, frete, tempoEntrega, data, email_fk) VALUES (${stringData(
-      values
-    )})`;
+    let sql = `INSERT INTO pedido (produtos, 
+      quantidade, 
+      observacao, 
+      valor, 
+      frete, 
+      tempoEntrega, 
+      data, 
+      email_fk)
+     VALUES (${stringData(values)})`;
 
     connection.query(sql, (err) => {
       if (err) {
         error(res);
       }
 
-      res.status(200).send();
+      res.status(200).send({ sucess: true });
     });
   }
 
