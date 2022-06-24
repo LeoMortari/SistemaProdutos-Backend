@@ -38,14 +38,12 @@ class Vendas{
 
     CadastrarVenda(res,venda){
         let values = Object.values(venda);
-        let sql = `INSERT INTO venda(id_usuario_fk,id_pedido_fk) VALUES (${values.join(
-            ','
-        )})`
-        connection.query(sql,(err, result) =>{
+        let sql = `INSERT INTO venda SET ?`
+        connection.query(sql, venda, (err, result) =>{
             if(err){
                 error(res);
             }else{
-            res.status(200).send();
+            res.status(200).send(result);
             }
         })
     }
@@ -55,7 +53,8 @@ class Vendas{
         'FROM venda v ' +
         'INNER JOIN (pedido p, usuario u) '+
         'ON v.id_pedido_fk = p.id_pk '+
-        'AND u.id_usuario_pk = v.id_usuario_fk';
+        'AND u.id_usuario_pk = v.id_usuario_fk ' +
+        'order by v.id_venda_pk';
         connection.query(sql,(err,result) =>{
             if(err){
                 error(res);
@@ -101,6 +100,29 @@ class Vendas{
             res.status(200).send(result);
           });
     }
+
+    getUsuario(res){
+        let sql = "SELECT * FROM usuario"
+        connection.query(sql, (err, result) => {
+            if(err){
+                error(res);
+            }
+            res.status(200).send(result);
+          });
+    }
+
+
+getidPedido(res){
+    let sql = "SELECT id_pk FROM pedido"
+    connection.query(sql, (err, result) => {
+        if(err){
+            error(res);
+        }
+        res.status(200).send(result);
+      });
 }
+
+}
+
 
 export default new Vendas();

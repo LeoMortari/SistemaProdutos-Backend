@@ -34,4 +34,12 @@ module.exports = (app) =>{
       let id = parseInt(req.params.id);
       vendas.EditarVenda(id,valores,res);
     })
+
+    app.get("/usuario", (req, res) => {
+      vendas.getUsuario(res);
+    })
+
+    app.get("/pedido", (req, res) => {
+      vendas.getidPedido(res);
+    })
 };
