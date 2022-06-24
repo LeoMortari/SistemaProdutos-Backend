@@ -1,6 +1,14 @@
 //Imports
 const res = require('express');
 import connection from "../../database/connection";
+import moment from "moment";
+
+//converte data
+const formatData = (arr) =>
+  arr.map((obj) => ({
+    ...obj,
+    data: moment(obj.data).format("DD/MM/yyyy HH:mm"),
+  }));
 
 //Constantes
 const ERROR_DATABASE = { error: "Falha na comunicação com o Banco de Dados" };
@@ -43,7 +51,7 @@ class Vendas{
     }
 
     ConsultaGeralVendas(res){
-        let sql = 'SELECT v.id_venda_pk, u.nome as "vendedor", p.* ' +
+        let sql = 'SELECT v.id_venda_pk, u.id_usuario_pk ,u.nome as "vendedor", p.* ' +
         'FROM venda v ' +
         'INNER JOIN (pedido p, usuario u) '+
         'ON v.id_pedido_fk = p.id_pk '+
@@ -52,7 +60,7 @@ class Vendas{
             if(err){
                 error(res);
             }
-            res.status(200).send(result);
+            res.status(200).send(formatData(result));
         })
     }
 
