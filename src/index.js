@@ -1,6 +1,7 @@
 import customExpress from "./config/customExpress";
 import connection from "./database/connection";
 import Pedidos from "./tables/pedidos";
+import Estoque from "./tables/estoque";
 
 const app = customExpress();
 
@@ -15,6 +16,7 @@ connection.connect((err) => {
 
   //Iniciação da classe
   Pedidos.init();
+  Estoque.init();
 
   //Event de abertura
   return app.listen(port, () => {
