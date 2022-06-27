@@ -13,7 +13,6 @@ class BancoFinanceiro{
     criarFinanceiro(){
         let sql = 'CREATE TABLE IF NOT EXISTS financeiro'+
         '(id_financeiro_pk INT NOT NULL AUTO_INCREMENT PRIMARY KEY,'+
-        'Nome varchar(150) ,'+
         'ValorVenda int,'+
         'ValorPedido int,'+
         'ValorLucro int)'
@@ -30,7 +29,9 @@ class BancoFinanceiro{
 
         })
     }
+    
 
+    
 
     
   }
