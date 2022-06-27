@@ -69,6 +69,18 @@ class Cardapio {
     });
   }
 
+  editarCardapio(res,valores,id){
+    let sql = `UPDATE cardapio SET ? WHERE id_pk = ${id}`
+
+    connection.query(sql, valores, (err, result) => {
+      if (err) {
+        error(res);
+      }
+
+      res.status(200).send(result);
+    });
+  }
+
 }
 
 export default new Cardapio();
