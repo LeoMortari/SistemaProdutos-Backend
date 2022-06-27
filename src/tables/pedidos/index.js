@@ -65,18 +65,19 @@ class Pedidos {
   //Adiciona um novo pedido
   adicionaNovoPedido(res, pedido) {
     let values = Object.values(pedido);
-    let sql = `INSERT INTO pedido (produtos, 
-      quantidade, 
-      observacao, 
-      valor, 
-      frete, 
-      tempoEntrega, 
-      data, 
+    let sql = `INSERT INTO pedido (produtos,
+      quantidade,
+      observacao,
+      valor,
+      frete,
+      tempoEntrega,
+      data,
       email_fk)
      VALUES (${stringData(values)})`;
 
     connection.query(sql, (err) => {
       if (err) {
+        console.log(err);
         error(res);
       }
 
@@ -111,6 +112,21 @@ class Pedidos {
       let newValues = formatData(result);
 
       res.status(200).send(newValues);
+    });
+  }
+
+  editarPedido(res, pedido) {
+    let select = `SELECT id_pk FROM pedido ORDER BY id_pk DESC limit 1`;
+
+    connection.query(select, (err, result) => {
+      if (err) error(res);
+
+      let update = `UPDATE pedido SET quantidade = ${pedido.quantidade} WHERE id_pk = ${result[0].id_pk}`;
+      connection.query(update, (erro, _result) => {
+        if (erro) error(res);
+
+        res.send({ sucess: true });
+      });
     });
   }
 

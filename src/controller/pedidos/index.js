@@ -64,4 +64,10 @@ module.exports = (app) => {
 
     Pedidos.selectPedidoPorEmail(res, email);
   });
+
+  app.post("/pedidos/editar", (req, res) => {
+    console.log(req.body);
+
+    Pedidos.editarPedido(res, req.body);
+  });
 };
