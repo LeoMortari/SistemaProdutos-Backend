@@ -1,7 +1,7 @@
 import customExpress from "./config/customExpress";
 import connection from "./database/connection";
 import Pedidos from "./tables/pedidos";
-
+import financeiro from "./tables/financeiro";
 const app = customExpress();
 
 //Porta principal
@@ -15,7 +15,7 @@ connection.connect((err) => {
 
   //Iniciação da classe
   Pedidos.init();
-
+  financeiro.init();
   //Event de abertura
   return app.listen(port, () => {
     console.log("API Iniciada");
