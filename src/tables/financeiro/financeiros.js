@@ -64,7 +64,7 @@ selectLista(res,id){
     if (err) {
       res.send('erro')
     }
-    console.log('Result: ', result)
+
     res.status(200).send(result)
   });
 }
