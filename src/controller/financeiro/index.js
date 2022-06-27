@@ -1,7 +1,7 @@
 
 import  connection from '../../database/connection'
 
-import financeiro from '../../tables/financeiro/financeiros'
+import financeiro from '../../tables/financeiro/index'
 
 module.exports = app => {
    
