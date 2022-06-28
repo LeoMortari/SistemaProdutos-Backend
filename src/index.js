@@ -4,6 +4,7 @@ import Pedidos from "./tables/pedidos";
 import Usuarios from "./tables/usuarios";
 import Estoque from "./tables/estoque";
 import financeiro from "./tables/financeiro";
+import Vendas from "./tables/vendas";
 
 const app = customExpress();
 
@@ -20,7 +21,9 @@ connection.connect((err) => {
   Usuarios.init();
   Pedidos.init();
   Estoque.init();
+  Vendas.init();
   financeiro.init();
+
   //Event de abertura
   return app.listen(port, () => {
     console.log("API Iniciada");
