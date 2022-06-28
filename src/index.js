@@ -5,6 +5,7 @@ import Usuarios from "./tables/usuarios";
 import Estoque from "./tables/estoque";
 import financeiro from "./tables/financeiro";
 import Vendas from "./tables/vendas";
+import Cardapio from "./tables/cardapio";
 
 const app = customExpress();
 
@@ -19,6 +20,7 @@ connection.connect((err) => {
 
   //Iniciação da classe
   Usuarios.init();
+  Cardapio.init();
   Pedidos.init();
   Estoque.init();
   Vendas.init();
