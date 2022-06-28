@@ -32,4 +32,21 @@ module.exports = (app) => {
         let id = parseInt(req.params.id);
         Estoque.selectProdutoEstoquePorId(res, id)
     })
+
+    app.get("/estoque/deletar/:id", (req, res) => {
+        let id = parseInt(req.params.id);
+        Estoque.deleteProdutosEstoque(res, id)
+    })
+
+    app.put("/estoque/atualiza/:id", (req, res) => {
+        let id = parseInt(req.params.id);
+        let {
+            body: { descricao, quantidade, valor },
+        } = req;
+
+        let obj = { descricao, quantidade, valor };
+
+        Estoque.atualizaProdutoAoEstoque(res, obj, id);
+    })
+
 };

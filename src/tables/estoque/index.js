@@ -58,7 +58,7 @@ class Estoque {
 
   //Select por ID
   selectProdutoEstoquePorId(res, id) {
-    let sql = `SELECT * FROM estoque WHERE id = ${id}`;
+    let sql = `SELECT * FROM estoque WHERE id_pk = ${id}`;
 
     connection.query(sql, (err, result) => {
       if (err) {
@@ -66,6 +66,35 @@ class Estoque {
       }
 
       res.status(200).send(result);
+    });
+  }
+
+  deleteProdutosEstoque(res, id) {
+    let sql = `DELETE FROM estoque WHERE id_pk = ${id}`;
+
+    connection.query(sql, (err, result) => {
+      if (err) {
+        error(res);
+      }
+
+      res.status(200).send(result);
+    });
+  }
+
+  atualizaProdutoAoEstoque(res, estoque, id) {
+
+    let descricao = estoque.descricao
+    let quantidade = estoque.quantidade
+    let valor = estoque.valor
+
+    let sql = `UPDATE estoque SET descricao = '${descricao}', quantidade = '${quantidade}', valor = '${valor}' WHERE id_pk = ${id}`;
+
+    connection.query(sql, (err) => {
+      if (err) {
+        error(res);
+      }
+
+      res.status(200).send();
     });
   }
 
