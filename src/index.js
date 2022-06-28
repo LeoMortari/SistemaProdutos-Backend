@@ -14,7 +14,7 @@ connection.connect((err) => {
     return console.log("Erro no banco de dados, ERRO: " + err);
   }
 
-  //Iniciação da classe
+  //Inicialização da classe
   Pedidos.init();
   Cardapio.init();
 

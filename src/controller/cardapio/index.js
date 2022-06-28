@@ -12,6 +12,8 @@ module.exports = (app) => {
             if (!descricao || !nome || !preco) {
                 throw new Error("Todos os campos devem ser preenchidos");
             }
+            descricao = StringFunctions.convertToString(descricao);
+            nome = StringFunctions.convertToString(nome);
             preco = DoubleFunction.convertToDouble(preco);
         } catch (e) {
             return res.status(400).send(e.message);
