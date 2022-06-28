@@ -16,12 +16,12 @@ app.get("/financeiros",(req,res)=>{
     financeiro.SelectFinsnceiro(res)
 })
 
-app.get("/estoque", (req,res)=>{
+app.get("/estoque1", (req,res)=>{
     financeiro.selectProdutos(res)
 })
 
 
-app.get("/vendas/:id",(req,res)=>{
+app.get("/vendas1/:id",(req,res)=>{
 let id = parseInt(req.params.id)
    financeiro.selectLista(res,id)
 })

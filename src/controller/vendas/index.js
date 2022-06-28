@@ -35,11 +35,11 @@ module.exports = (app) =>{
       vendas.EditarVenda(id,valores,res);
     })
 
-    app.get("/usuario", (req, res) => {
+    app.get("/usuario1", (req, res) => {
       vendas.getUsuario(res);
     })
 
-    app.get("/pedido", (req, res) => {
+    app.get("/pedido1", (req, res) => {
       vendas.getidPedido(res);
     })
 };
