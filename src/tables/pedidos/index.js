@@ -51,8 +51,7 @@ class Pedidos {
       "frete DOUBLE NOT NULL," +
       "tempoEntrega INT NOT NULL," +
       "data DATETIME," +
-      "email_fk VARCHAR(90) NOT NULL," +
-      "id_cardapio_fk INT," +
+      "email_fk VARCHAR(100) NOT NULL," +
       "PRIMARY KEY(id_pk)," +
       "FOREIGN KEY (email_fk) REFERENCES usuario(email)," +
       "CONSTRAINT email_fk FOREIGN KEY (email_fk) REFERENCES usuario(email))";
