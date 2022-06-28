@@ -3,6 +3,7 @@ import connection from "./database/connection";
 import Pedidos from "./tables/pedidos";
 import Usuarios from "./tables/usuarios";
 import Estoque from "./tables/estoque";
+import financeiro from "./tables/financeiro";
 
 const app = customExpress();
 
@@ -19,7 +20,7 @@ connection.connect((err) => {
   Usuarios.init();
   Pedidos.init();
   Estoque.init();
-
+  financeiro.init();
   //Event de abertura
   return app.listen(port, () => {
     console.log("API Iniciada");
