@@ -33,7 +33,7 @@ class Usuarios {
       if(error){
           console.log(error)
       }else{
-          console.log('Tabela USUÁRIO criada com sucesso!')
+          return ;
       }
 
   })
