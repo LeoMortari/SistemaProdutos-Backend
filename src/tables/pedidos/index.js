@@ -64,6 +64,7 @@ class Pedidos {
   //Adiciona um novo pedido
   adicionaNovoPedido(res, pedido) {
     let values = Object.values(pedido);
+    console.log(pedido)
     let sql = `INSERT INTO pedido (produtos,
       quantidade,
       observacao,

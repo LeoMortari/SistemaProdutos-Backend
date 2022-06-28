@@ -11,10 +11,18 @@ module.exports = (app) => {
   app.post("/pedidos/adicionar", (req, res) => {
     //Retira os valores da request
     let {
-      body: { produtos, quantidade, observacao, valor, tempoEntrega, frete },
+      body: {
+        produtos,
+        quantidade,
+        observacao,
+        valor,
+        tempoEntrega,
+        frete,
+        email,
+      },
     } = req;
 
-    const email_fk = StringFunctions.convertToString("leo@teste");
+    const email_fk = StringFunctions.convertToString(email);
 
     //Criando a data atual
     let data = StringFunctions.convertToString(
